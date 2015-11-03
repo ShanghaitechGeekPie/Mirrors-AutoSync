@@ -67,16 +67,17 @@ The schedule accept these:
 
 and can be under this expression:
 
-|| Expression || Field || Description ||
-|| * || any || Fire on every value ||
-|| */a || any || Fire every a values, starting from the minimum ||
-|| a-b || any || Fire on any value within the a-b range (a must be smaller than b) ||
-|| a-b/c || any || Fire every c values within the a-b range ||
-|| xth y || day || Fire on the x -th occurrence of weekday y within the month ||
-|| last x || day || Fire on the last occurrence of weekday x within the month ||
-|| last || day || Fire on the last day within the month ||
-|| x,y,z || any || Fire on any matching expression; can combine any number of any of the above expressions ||
-
+```
+Expression	Field	Description
+*			any		Fire on every value
+*/a			any		Fire every a values, starting from the minimum
+a-b			any		Fire on any value within the a-b range (a must be smaller than b)
+a-b/c		any		Fire every c values within the a-b range
+xth y		day		Fire on the x -th occurrence of weekday y within the month
+last x		day		Fire on the last occurrence of weekday x within the month
+last		day		Fire on the last day within the month
+x,y,z		any		Fire on any matching expression; can combine any number of any of the above expressions
+```
 
 #Information#
 
