@@ -50,6 +50,9 @@ class task(object):
 
 		filelock = True
 
+		output_file = open(output_file_dir, 'a+')
+		output_file.close()
+
 		output_file = open(output_file_dir, 'r')
 
 		try:
