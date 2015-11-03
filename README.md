@@ -54,7 +54,7 @@ This is the basic structure of Mirrors-AutoSync.conf:
 
 ```
 
-#Information@
+#Information#
 
 developed by eastpiger from Geek Pie @ ShanghaiTech
 
