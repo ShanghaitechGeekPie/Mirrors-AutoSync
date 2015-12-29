@@ -50,10 +50,10 @@ class task(object):
 
 		filelock = True
 
-		output_file = open(output_file_dir, 'a+')
+		output_file = open(status_file_dir, 'a+')
 		output_file.close()
 
-		output_file = open(output_file_dir, 'r')
+		output_file = open(status_file_dir, 'r')
 
 		try:
 			content = json.loads(output_file.read())
@@ -62,12 +62,13 @@ class task(object):
 
 		output_file.close()
 
-		output_file = open(output_file_dir, 'w')
+		output_file = open(status_file_dir, 'w')
 
 		newstatus = {
 			'name': self.name,
 			'statuscode': statuscode,
 			'upstream': self.path['server'] + self.path['remotepath'],
+			'path': self.path['localpath'],
 			'time': time.time()
 		}
 
@@ -89,7 +90,9 @@ class task(object):
 	def runner(self):
 		global rsynclock
 
-		while rsynclock >= 1 : time.sleep(0.1)
+		while rsynclock >= 1 :
+			print("	[{}] other job is running, wait for 5 minutes.\n".format(self.name))
+			time.sleep(300)
 
 		rsynclock += 1
 
@@ -97,7 +100,7 @@ class task(object):
 
 		self.writer(-1)
 
-		statuscode = os.system("rsync -Par {}{} {} > /Mirrors-AutoSync/mirrors/logs/{}".format(self.path['server'], self.path['remotepath'], self.path['localpath'], self.name)) >> 8
+		statuscode = os.system("rsync -Par {}{} {}{} > {}".format(self.path['server'], self.path['remotepath'], base_dir, self.path['localpath'], log_file_dir)) >> 8
 
 		print("	[{}] finished with exit code {}.\n".format(self.name, statuscode))
 
@@ -109,7 +112,8 @@ class task(object):
 		scheduler.add_job(
 			self.runner,
 			'cron',
-			max_instances = 1,
+			name = self.name,
+			max_instances = 100,
 			#next_run_time = None,
 			year = self.schedule['year'],
 			month = self.schedule['month'],
@@ -146,7 +150,9 @@ config_file = open(config_file_dir, 'r')
 
 content = json.loads(config_file.read())
 
-output_file_dir = content['output_file_dir']
+base_dir = content['base_dir']
+status_file_dir = content['status_file_dir']
+log_file_dir = content['log_file_dir']
 
 for i in content['schedules']:
 	t = task(i['name'], i['schedule'], i['path'])
