@@ -109,6 +109,8 @@ class task(object):
 		scheduler.add_job(
 			self.runner,
 			'cron',
+			max_instances = 1,
+			#next_run_time = None,
 			year = self.schedule['year'],
 			month = self.schedule['month'],
 			day = self.schedule['day'],
