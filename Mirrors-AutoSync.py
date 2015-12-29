@@ -114,7 +114,7 @@ class task(object):
 			'cron',
 			name = self.name,
 			max_instances = 100,
-			next_run_time = time.time()+2,
+			next_run_time = datetime.datetime.now(),
 			year = self.schedule['year'],
 			month = self.schedule['month'],
 			day = self.schedule['day'],
