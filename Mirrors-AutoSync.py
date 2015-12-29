@@ -8,7 +8,7 @@
 #  - https://github.com/ShanghaitechGeekPie/Mirrors-AutoSync
 
 # ===========================================
-config_file_dir = "/etc/Mirrors-AutoSync/Mirrors-AutoSync.conf"
+config_file_dir = "/Mirrors-AutoSync/Mirrors-AutoSync.conf"
 # ===========================================
 
 from apscheduler.schedulers.background import BackgroundScheduler,BlockingScheduler
