@@ -92,7 +92,7 @@ class task(object):
 
 		while rsynclock >= 1 :
 			print("	[{}] other job is running, wait for 5 minutes.\n".format(self.name))
-			time.sleep(1)
+			time.sleep(300)
 
 		rsynclock += 1
 
