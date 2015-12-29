@@ -13,7 +13,7 @@ config_file_dir = "/Mirrors-AutoSync/Mirrors-AutoSync.conf"
 
 from apscheduler.schedulers.background import BackgroundScheduler,BlockingScheduler
 import json
-import time
+import datetime, time
 import os
 
 class task(object):
