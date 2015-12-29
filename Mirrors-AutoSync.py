@@ -91,8 +91,8 @@ class task(object):
 		global rsynclock
 
 		while rsynclock >= 1 :
-			print("	[{}] other job is running, wait for 5 minutes.\n".format(self.name))
-			time.sleep(300)
+			print("	[{}] other job is running, wait for 1 minutes.\n".format(self.name))
+			time.sleep(60)
 
 		rsynclock += 1
 
@@ -114,7 +114,7 @@ class task(object):
 			'cron',
 			name = self.name,
 			max_instances = 100,
-			#next_run_time = None,
+			next_run_time = time.time()+2,
 			year = self.schedule['year'],
 			month = self.schedule['month'],
 			day = self.schedule['day'],
