@@ -97,7 +97,7 @@ class task(object):
 
 		self.writer(-1)
 
-		statuscode = os.system("rsync -Par {}{} {}".format(self.path['server'], self.path['remotepath'], self.path['localpath'])) >> 8
+		statuscode = os.system("rsync -Par {}{} {} > /Mirrors-AutoSync/mirrors/logs/{}".format(self.path['server'], self.path['remotepath'], self.path['localpath'], self.path['name'])) >> 8
 
 		print("	[{}] finished with exit code {}.\n".format(self.name, statuscode))
 
