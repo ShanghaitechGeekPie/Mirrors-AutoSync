@@ -89,7 +89,7 @@ class task(object):
 	def runner(self):
 		global rsynclock
 
-		while rsynclock >= 2 : time.sleep(0.1)
+		while rsynclock >= 1 : time.sleep(0.1)
 
 		rsynclock += 1
 
