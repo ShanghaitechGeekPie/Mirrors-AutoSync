@@ -92,11 +92,11 @@ class task(object):
 
 		while rsynclock >= 1 :
 			print("	[{}] other job is running, wait for 5 minutes.\n".format(self.name))
-			time.sleep(300)
+			time.sleep(1)
 
 		rsynclock += 1
 
-		print("	[{}] running with [rsync -Par {}{} {}].\n".format(self.name, self.path['server'], self.path['remotepath'], self.path['localpath']))
+		print("	[{}] running with [rsync -Par {}{} {}{}].\n".format(self.name, self.path['server'], self.path['remotepath'], base_dir, self.path['localpath']))
 
 		self.writer(-1)
 
@@ -169,7 +169,7 @@ rsynclock = 0
 
 print('	Finished.\n')
 
-print('[Starting multithreading locks]\n')
+print('[Starting multithreading]\n')
 
 try:
 	scheduler.start()
