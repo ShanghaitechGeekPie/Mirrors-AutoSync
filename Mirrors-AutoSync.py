@@ -100,7 +100,7 @@ class task(object):
 
 		self.writer(-1)
 
-		statuscode = os.system("rsync -Par {}{} {}{} > {}{}".format(self.path['server'], self.path['remotepath'], base_dir, self.path['localpath'], log_file_dir, self.name)) >> 8
+		statuscode = os.system("rsync -Par --chmod=775 --owner=root --group=root {}{} {}{} > {}{}".format(self.path['server'], self.path['remotepath'], base_dir, self.path['localpath'], log_file_dir, self.name)) >> 8
 
 		print("	[{}] finished with exit code {}.\n".format(self.name, statuscode))
 
