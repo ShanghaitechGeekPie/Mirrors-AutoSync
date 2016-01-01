@@ -90,7 +90,7 @@ class task(object):
 	def runner(self):
 		global rsynclock
 
-		while rsynclock >= 1 :
+		while rsynclock >= 2 :
 			print("	[{}] other job is running, wait for 1 minutes.\n".format(self.name))
 			time.sleep(60)
 
