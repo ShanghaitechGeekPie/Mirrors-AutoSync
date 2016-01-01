@@ -113,6 +113,7 @@ class task(object):
 			self.runner,
 			'cron',
 			name = self.name,
+			coalesce = True,
 			max_instances = 100,
 			next_run_time = datetime.datetime.now(),
 			year = self.schedule['year'],
@@ -144,7 +145,9 @@ print('''
 
 print('[Loading config file]\n')
 
-scheduler = BlockingScheduler()
+scheduler = BlockingScheduler(
+	timezone = 'Asia/Shanghai',
+)
 
 config_file = open(config_file_dir, 'r')
 
