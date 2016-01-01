@@ -114,6 +114,7 @@ class task(object):
 			'cron',
 			name = self.name,
 			coalesce = True,
+			misfire_grace_time = 86400,
 			max_instances = 100,
 			next_run_time = datetime.datetime.now(),
 			year = self.schedule['year'],
