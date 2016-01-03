@@ -108,6 +108,9 @@ class task(object):
 
 		rsynclock -= 1
 
+		if statuscode != 0:
+			raise RuntimeError("Sync error with error code {}".format(statuscode))
+
 	def setup(self, scheduler):
 		scheduler.add_job(
 			self.runner,
