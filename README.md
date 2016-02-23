@@ -5,7 +5,7 @@ A tool to set schedules to rsync from remote server.
 
 #Install#
 
-> python3 setup.py install
+> Docker
 
 #Config
 
@@ -56,14 +56,14 @@ This is the basic structure of Mirrors-AutoSync.conf:
 
 The schedule accept these:
 
- - year 
- - month 
- - day 
+ - year
+ - month
+ - day
  - week
- - day_of_week 
- - hour 
- - minute 
- - second 
+ - day_of_week
+ - hour
+ - minute
+ - second
 
 and can be under this expression:
 
