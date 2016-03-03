@@ -91,18 +91,18 @@ class task(object):
 		global rsynclock
 
 		while rsynclock >= 1 :
-			print("	[{}] other job is running, wait for 1 minutes.\n".format(self.name))
+			print("	[{}] other job is running, wait for 1 minutes.".format(self.name))
 			time.sleep(60)
 
 		rsynclock += 1
 
-		print("	[{}] running with [rsync -Par {}{} {}{}].\n".format(self.name, self.path['server'], self.path['remotepath'], base_dir, self.path['localpath']))
+		print("	[{}] running with [rsync -Par {}{} {}{}].".format(self.name, self.path['server'], self.path['remotepath'], base_dir, self.path['localpath']))
 
 		self.writer(-1)
 
 		statuscode = os.system("rsync -Par --chmod=775 --owner=root --group=root {}{} {}{} > {}{}".format(self.path['server'], self.path['remotepath'], base_dir, self.path['localpath'], log_file_dir, self.name)) >> 8
 
-		print("	[{}] finished with exit code {}.\n".format(self.name, statuscode))
+		print("	[{}] finished with exit code {}.".format(self.name, statuscode))
 
 		self.writer(statuscode)
 
