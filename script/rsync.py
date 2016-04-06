@@ -10,10 +10,6 @@ LocalPath	=	sys.argv[3]
 StatusPath	=	sys.argv[4]
 
 def writer(statuscode):
-
-	if statuscode != 0:
-		raise RuntimeError("Sync script error with error code {}".format(statuscode))
-
 	if not os.path.exists(StatusPath):
 		output_file = open(StatusPath, 'a+')
 		output_file.close()
@@ -56,3 +52,6 @@ statuscode = os.system("rsync -rtlvH --safe-links --delete --delete-delay --dela
 	.format(RemotePath, LocalPath)) >> 8
 
 writer(statuscode)
+
+if statuscode != 0:
+	raise RuntimeError("Sync script error with error code {}".format(statuscode))
