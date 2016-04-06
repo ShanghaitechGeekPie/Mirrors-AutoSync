@@ -31,7 +31,7 @@ def writer(statuscode):
 
 	insert = True
 	for i in range(len(content)):
-		if content[i]['name'] == self.name:
+		if content[i]['name'] == Name:
 			content[i] = newstatus
 			insert = False
 	if insert: content.append(newstatus)
