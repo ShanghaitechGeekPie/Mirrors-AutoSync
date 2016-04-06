@@ -43,6 +43,7 @@ class task(object):
 		print('	Load scheduler [' + self.name + '].')
 
 	def runner(self):
+		global method_lock
 
 		while method_lock > 2:
 			print("	[{}] waiting.".format(self.name))
