@@ -46,6 +46,9 @@ def writer(statuscode):
 
 	output_file.close()
 
+print("	[{}] run command {}."
+				.format(Name, "rsync -rtlvH --safe-links --delete --delete-delay --delay-updates {} {}".format(RemotePath, LocalPath)))
+
 writer(-1)
 
 statuscode = os.system("rsync -rtlvH --safe-links --delete --delete-delay --delay-updates {} {}"
@@ -54,4 +57,5 @@ statuscode = os.system("rsync -rtlvH --safe-links --delete --delete-delay --dela
 writer(statuscode)
 
 if statuscode != 0:
-	raise RuntimeError("Sync script error with error code {}".format(statuscode))
+	print("	[{}] failed with error code {}."
+				.format(Name, statuscode))

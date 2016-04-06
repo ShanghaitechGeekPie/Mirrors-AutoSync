@@ -44,9 +44,15 @@ class task(object):
 
 	def runner(self):
 
+		while method_lock > 2:
+			print("	[{}] waiting.".format(self.name))
+			time.sleep(10)
+
+		method_lock += 1
+
 		print("	[{}] running with [{}].".format(self.name, self.exec))
 
-		statuscode = os.system("nohup python3 {} {} {} {} > {}{} &"
+		statuscode = os.system("python3 {} {} {} {} > {}{}"
 			.format(
 				script_file_dir + self.exec,
 				self.name,
@@ -58,8 +64,10 @@ class task(object):
 		print("	[{}] fired.".format(self.name, statuscode))
 
 		if statuscode != 0:
-			print("	[{}] running with [{}] failed with error code {}."
+			print("	[{}] script running with [{}] failed with error code {}."
 				.format(self.name, self.exec, statuscode))
+
+		method_lock -= 1
 
 	def setup(self, scheduler):
 		scheduler.add_job(
@@ -109,6 +117,8 @@ content = json.loads(config_file.read())
 
 log_file_dir = content['log_file_dir']
 status_file_dir = content['status_file_dir']
+
+method_lock = 0
 
 for i in content['schedules']:
 	t = task(i['name'], i['schedule'], i['exec'], i['argument'])
