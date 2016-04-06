@@ -105,7 +105,7 @@ scheduler = BlockingScheduler(
 
 config_file = open(config_file_dir, 'r')
 
-content = json.loads(config_file.read)
+content = json.loads(config_file.read())
 
 log_file_dir = content['log_file_dir']
 status_file_dir = content['status_file_dir']
