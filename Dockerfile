@@ -9,5 +9,6 @@ RUN apt-get clean && \
 RUN mkdir /Mirrors-AutoSync
 WORKDIR /Mirrors-AutoSync
 COPY . /Mirrors-AutoSync
+RUN chmod +x /Mirrors-AutoSync/script/*
 RUN mv supervisor.conf /etc/supervisor/conf.d/
 CMD ["supervisor","-n"]

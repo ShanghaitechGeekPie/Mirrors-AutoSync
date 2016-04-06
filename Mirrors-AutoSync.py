@@ -46,7 +46,7 @@ class task(object):
 
 		print("	[{}] running with [{}].".format(self.name, self.exec))
 
-		statuscode = os.system("nohup {} {} {} {} > {}{} &"
+		statuscode = os.system("nohup python3 {} {} {} {} > {}{} &"
 			.format(
 				script_file_dir + self.exec,
 				self.name,
