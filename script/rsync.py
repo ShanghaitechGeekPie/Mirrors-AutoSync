@@ -12,7 +12,7 @@ StatusPath	=	sys.argv[3]
 statuscode = os.system("rsync -rtlvH --safe-links --delete --delete-delay --delay-updates {} {}"
 	.format(RemotePath, LocalPath)) >> 8
 
-print("	[{}] fired.".format(self.name, statuscode))
+print("	[{}] fired.".format(Name, statuscode))
 
 if statuscode != 0:
 	raise RuntimeError("Sync script error with error code {}".format(statuscode))
@@ -31,10 +31,8 @@ except:
 	content = []
 
 newstatus = {
-	'name': 'a',
-	'statuscode': 'ss',
-	'upstream': 'sss',
-	'path': 'asd',
+	'name': Name,
+	'statuscode': statuscode,
 	'time': time.time()
 }
 
