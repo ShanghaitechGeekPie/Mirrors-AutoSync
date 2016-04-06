@@ -142,7 +142,7 @@
 			},
 			"exec" : "rsync.py",
 			"argument" : [
-				"rsync://mirrors.tuna.tsinghua.edu.cn/ruby",
+				"rsync://mirrors.ustc.edu.cn/ruby",
 				"/mirrors/ruby"
 			]
 		},
