@@ -59,3 +59,4 @@ writer(statuscode)
 if statuscode != 0:
 	print("	[{}] failed with error code {}."
 				.format(Name, statuscode))
+	exit(233)

@@ -44,6 +44,7 @@ class task(object):
 
 	def runner(self):
 		global method_lock
+		global scheduler
 
 		while method_lock > 2:
 			print("	[{}] waiting.".format(self.name))
@@ -67,6 +68,11 @@ class task(object):
 		if statuscode != 0:
 			print("	[{}] script running with [{}] failed with error code {}."
 				.format(self.name, self.exec, statuscode))
+			if statuscode == 233:
+				print("	[{}] script ask to retry after 30 minutes."
+				scheduler.modify_job(
+					self.name,
+					next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 30*60),)
 
 		method_lock -= 1
 
@@ -74,6 +80,7 @@ class task(object):
 		scheduler.add_job(
 			self.runner,
 			'cron',
+			id = self.name,
 			name = self.name,
 			coalesce = True,
 			misfire_grace_time = 86400,
