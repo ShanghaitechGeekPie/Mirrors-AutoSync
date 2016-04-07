@@ -47,7 +47,7 @@ def writer(statuscode):
 	output_file.close()
 
 print("	[{}] run command {}."
-				.format(Name, "rsync -rtlvH --safe-links --delete --delete-delay --delay-updates {} {}".format(RemotePath, LocalPath)))
+				.format(Name, "rsync -rtlvH --safe-links --delete --delete-delay --delay-updates --timeout=600 --contimeout=60 --progress {} {}".format(RemotePath, LocalPath)))
 
 writer(-1)
 
