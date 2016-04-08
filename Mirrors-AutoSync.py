@@ -46,7 +46,7 @@ class task(object):
 		global method_lock
 		global scheduler
 
-		while method_lock > 2:
+		while method_lock > 1:
 			print("	[{}] waiting.".format(self.name))
 			time.sleep(10)
 
@@ -69,10 +69,10 @@ class task(object):
 			print("	[{}] script running with [{}] failed with error code {}."
 				.format(self.name, self.exec, statuscode))
 			if statuscode == 233:
-				print("	[{}] script ask to retry after 30 minutes."
+				print("	[{}] script ask to retry after 10 minutes."
 				scheduler.modify_job(
 					self.name,
-					next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 30*60),)
+					next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 10*60),)
 
 		method_lock -= 1
 
