@@ -69,7 +69,8 @@ class task(object):
 			print("	[{}] script running with [{}] failed with error code {}."
 				.format(self.name, self.exec, statuscode))
 			if statuscode == 233:
-				print("	[{}] script ask to retry after 10 minutes.")
+				print("	[{}] script ask to retry after 10 minutes."
+					.format(self.name))
 				scheduler.modify_job(
 					self.name,
 					next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 10*60),)
