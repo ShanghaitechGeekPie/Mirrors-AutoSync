@@ -12,6 +12,6 @@ COPY . /Mirrors-AutoSync
 RUN chmod +x /Mirrors-AutoSync/script/*
 RUN mv supervisor.conf /etc/supervisor/conf.d/
 
-RUN mkdir ~/bin && PATH=~/bin:$PATH && curl https://storage-googleapis.lug.ustc.edu.cn/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
+RUN curl https://storage-googleapis.lug.ustc.edu.cn/git-repo-downloads/repo > /bin/repo && chmod a+x /bin/repo
 
 CMD ["supervisor","-n"]
