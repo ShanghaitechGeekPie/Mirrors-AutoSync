@@ -47,11 +47,10 @@ def writer(statuscode):
 	output_file.close()
 
 print("	[{}] run command {}."
-				.format(Name, "repo sync"))
-
+				.format(Name, "repo sync -d && repo forall -c 'git reset --hard' && repo forall -c 'git clean -f -d'"))
 writer(-1)
 
-statuscode = os.system("cd {} && repo sync"
+statuscode = os.system("cd {} && repo sync -d && repo forall -c 'git reset --hard' && repo forall -c 'git clean -f -d'"
 	.format(LocalPath)) >> 8
 
 writer(statuscode)
