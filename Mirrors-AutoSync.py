@@ -52,30 +52,32 @@ class task(object):
 
 		method_lock += 1
 
-		print("	[{}] running with [{}].".format(self.name, self.exec))
+		try:
 
-		statuscode = os.system("python3 {} {} {} {} > {}{}"
-			.format(
-				script_file_dir + self.exec,
-				self.name,
-				' '.join(self.argument),
-				status_file_dir,
-				log_file_dir,
-				self.name)) >> 8
+			print("	[{}] running with [{}].".format(self.name, self.exec))
 
-		print("	[{}] fired.".format(self.name, statuscode))
-
-		if statuscode != 0:
-			print("	[{}] script running with [{}] failed with error code {}."
-				.format(self.name, self.exec, statuscode))
-			if statuscode == 233:
-				print("	[{}] script ask to retry after 10 minutes."
-					.format(self.name))
-				scheduler.modify_job(
+			statuscode = os.system("python3 {} {} {} {} > {}{}"
+				.format(
+					script_file_dir + self.exec,
 					self.name,
-					next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 10*60),)
+					' '.join(self.argument),
+					status_file_dir,
+					log_file_dir,
+					self.name)) >> 8
 
-		method_lock -= 1
+			print("	[{}] fired.".format(self.name, statuscode))
+
+			if statuscode != 0:
+				print("	[{}] script running with [{}] failed with error code {}."
+					.format(self.name, self.exec, statuscode))
+				if statuscode == 233:
+					print("	[{}] script ask to retry after 10 minutes."
+						.format(self.name))
+					scheduler.modify_job(
+						self.name,
+						next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 10*60),)
+		finally:
+			method_lock -= 1
 
 	def setup(self, scheduler):
 		scheduler.add_job(
