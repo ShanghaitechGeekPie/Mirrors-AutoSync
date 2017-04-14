@@ -13,6 +13,7 @@ script_file_dir = "/Mirrors-AutoSync/script/"
 # ===========================================
 
 from apscheduler.schedulers.background import BackgroundScheduler,BlockingScheduler
+import threading
 import json
 import datetime, time
 import os
@@ -45,12 +46,15 @@ class task(object):
 	def runner(self):
 		global method_lock
 		global scheduler
+		global mutex
 
 		while method_lock > 1:
 			print("	[{}] waiting.".format(self.name))
 			time.sleep(10)
 
-		method_lock += 1
+		if mutex.acquire():  
+			method_lock += 1
+			mutex.release()  
 
 		try:
 
@@ -77,7 +81,10 @@ class task(object):
 						self.name,
 						next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 10*60),)
 		finally:
-			method_lock -= 1
+
+			if mutex.acquire():  
+				method_lock -= 1
+				mutex.release()  
 
 	def setup(self, scheduler):
 		scheduler.add_job(
@@ -130,6 +137,7 @@ log_file_dir = content['log_file_dir']
 status_file_dir = content['status_file_dir']
 
 method_lock = 0
+mutex = threading.Lock()
 
 for i in content['schedules']:
 	t = task(i['name'], i['schedule'], i['exec'], i['argument'])
