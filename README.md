@@ -1,54 +1,49 @@
 
-#Mirrors-AutoSync#
+# Mirrors-AutoSync #
 
 A tool to set schedules to rsync from remote server.
 
-#Install#
+# Install #
 
 > Docker
 
-#Config
+# Config
 
 By default, config file directory is `/etc/Mirrors-AutoSync/Mirrors-AutoSync.conf`.
 
 This is the basic structure of Mirrors-AutoSync.conf:
 ```JSON
 {
-	"output_file_dir" : "Mirrors-Status.json",
+	"base_dir" : "/mirrors/",
+	"status_file_dir" : "/mirrors/Mirrors-Status.json",
+	"log_file_dir" : "/mirrors/logs/",
 	"schedules" : [
 		{
-			"name" : "test1",
+			"name" : "aosc",
 			"schedule" : {
-				"second" : "*/2"
+				"hour" : "1",
+				"minute": 0,
+				"second": 0
 			},
-			"path" : {
-				"server" : "rsync://mirrors.example.com/",
-				"remotepath" : "path/to/ubuntu",
-				"localpath" : "/path/to/ubuntu"
-			}
+			"exec" : "rsync.py",
+			"argument" : [
+				"rsync://mirrors.yun-idc.com/anthon",
+				"/mirrors/aosc"
+			]
 		},
 		{
-			"name" : "test2",
+			"name" : "archlinux",
 			"schedule" : {
-				"second" : "*/3"
+				"hour" : "0,8,16",
+				"minute": 0,
+				"second": 0
 			},
-			"path" : {
-				"server" : "rsync://mirrors.example.com/",
-				"remotepath" : "path/to/ubuntu",
-				"localpath" : "/path/to/ubuntu"
-			}
+			"exec" : "rsync.py",
+			"argument" : [
+				"rsync://mirrors.tuna.tsinghua.edu.cn/archlinux",
+				"/mirrors/archlinux"
+			]
 		},
-		{
-			"name" : "test3",
-			"schedule" : {
-				"second" : "*/5"
-			},
-			"path" : {
-				"server" : "rsync://mirrors.example.com/",
-				"remotepath" : "path/to/ubuntu",
-				"localpath" : "/path/to/ubuntu"
-			}
-		}
 	]
 }
 
@@ -79,7 +74,9 @@ last		day		Fire on the last day within the month
 x,y,z		any		Fire on any matching expression; can combine any number of any of the above expressions
 ```
 
-#Information#
+You can use different sync method under folder script. Assign different script by changing the option exec and argument
+
+# Information #
 
 developed by eastpiger from Geek Pie @ ShanghaiTech
 
