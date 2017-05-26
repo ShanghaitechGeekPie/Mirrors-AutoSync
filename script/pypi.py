@@ -47,12 +47,12 @@ def writer(statuscode):
 	output_file.close()
 
 print("	[{}] run command {}."
-				.format(Name, "rsync -pPrtlvH --sparse --safe-links --delete --delete-delay --delay-updates --timeout=600 --contimeout=60 --progress {} {}\n".format(RemotePath, LocalPath)))
+				.format(Name, "bandersnatch -c /Mirrors-AutoSync/bandersnatch.conf mirror 2>&1"))
 
 writer(-1)
 
-statuscode = os.system("rsync -pPrtlvH --sparse --safe-links --delete --delete-delay --delay-updates {} {}"
-	.format(RemotePath, LocalPath)) >> 8
+statuscode = os.system("bandersnatch -c /Mirrors-AutoSync/bandersnatch.conf mirror 2>&1"
+	.format(LocalPath)) >> 8
 
 writer(statuscode)
 

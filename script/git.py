@@ -47,11 +47,11 @@ def writer(statuscode):
 	output_file.close()
 
 print("	[{}] run command {}."
-				.format(Name, "git fetch --all && git reset --hard origin/master"))
+				.format(Name, "git fetch origin master -v --progress --tags && git update-server-info"))
 
 writer(-1)
 
-statuscode = os.system("cd {} && git fetch --all && git reset --hard origin/master"
+statuscode = os.system("cd {} && git fetch origin master -v --progress --tags && git update-server-info"
 	.format(LocalPath)) >> 8
 
 writer(statuscode)
