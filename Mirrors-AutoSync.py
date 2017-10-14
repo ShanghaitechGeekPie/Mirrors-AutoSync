@@ -48,10 +48,6 @@ class task(object):
 		global scheduler
 		global mutex
 
-		while method_lock > 1:
-			print("	[{}] waiting.".format(self.name))
-			time.sleep(10)
-
 		if mutex.acquire():  
 			method_lock += 1
 			mutex.release()  
@@ -75,11 +71,11 @@ class task(object):
 				print("	[{}] script running with [{}] failed with error code {}."
 					.format(self.name, self.exec, statuscode))
 				if statuscode == 233:
-					print("	[{}] script ask to retry after 10 minutes."
+					print("	[{}] script ask to retry after 60 minutes."
 						.format(self.name))
 					scheduler.modify_job(
 						self.name,
-						next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 10*60),)
+						next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 60*60),)
 		finally:
 
 			if mutex.acquire():  
@@ -94,7 +90,7 @@ class task(object):
 			name = self.name,
 			coalesce = True,
 			misfire_grace_time = 86400,
-			max_instances = 100,
+			max_instances = 1,
 			next_run_time = datetime.datetime.now(),
 			year = self.schedule['year'],
 			month = self.schedule['month'],

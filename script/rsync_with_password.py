@@ -47,11 +47,11 @@ def writer(statuscode):
 	output_file.close()
 
 print("	[{}] run command {}."
-				.format(Name, "RSYNC_PASSWORD=******** rsync -rtlvH --safe-links --delete --delete-delay --delay-updates --timeout=600 --contimeout=60 --progress {} {}".format(RemotePath, LocalPath)))
+				.format(Name, "RSYNC_PASSWORD=******** rsync -pPrtlvH --sparse --safe-links --delete --delete-delay --delay-updates --timeout=600 --contimeout=60 --progress {} {}\n".format(RemotePath, LocalPath)))
 
 writer(-1)
 
-statuscode = os.system("RSYNC_PASSWORD={} rsync -rtlvH --safe-links --delete --delete-delay --delay-updates {} {}"
+statuscode = os.system("RSYNC_PASSWORD={} rsync -pPrtlvH --sparse --safe-links --delete --delete-delay --delay-updates --timeout=60 --contimeout=60 --progress {} {}"
 	.format(os.getenv('PSW_' + Name), RemotePath, LocalPath)) >> 8
 
 writer(statuscode)
