@@ -1,4 +1,4 @@
-FROM mirrorsimage:latest
+FROM daocloud.io/geekpie/mirrorsimage:latest
 
 MAINTAINER zxt @ Geek Pie Association
 RUN mkdir /Mirrors-AutoSync
