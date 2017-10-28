@@ -7,10 +7,10 @@ import os
 import fcntl
 
 Name			=	sys.argv[1]
-LocalPath		=	sys.argv[2]
-RemotePath		=	sys.argv[3]
+RemotePath	=	sys.argv[2]
+LocalPath		=	sys.argv[3]
 TimefilePath	=	sys.argv[4]
-StatusPath		=	sys.argv[5]
+StatusPath	=	sys.argv[5]
 
 def writer(statuscode):
 	if not os.path.exists(StatusPath):
