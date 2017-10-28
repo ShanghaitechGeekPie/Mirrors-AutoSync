@@ -49,7 +49,7 @@ def writer(statuscode):
 
 	output_file.close()
 
-command_literal = "/Mirrors-AutoSync/script/quick-fedora-mirror --timefile {} --destination-dir {} --upstream {} {}".format(TimefilePath, LocalPath, RemotePath, "" if os.path.exists(TimefilePath) else "-a")
+command_literal = "/Mirrors-AutoSync/script/quick-fedora-mirror -c /Mirrors-AutoSync/script/quick-fedora-mirror.conf --timefile {} --destination-dir {} --upstream {} {}".format(TimefilePath, LocalPath, RemotePath, "" if os.path.exists(TimefilePath) else "-a")
 
 print("	[{}] run command {}.".format(Name, command_literal))
 

@@ -249,8 +249,8 @@ do_rsync () {
 
     local src=$1 dest=$2 files=$3 opts=$4
     local runcount=0
-    local log=$(mktemp -p . rsync-out-XXXXXX.log)
-    local errlog=$(mktemp -p . rsync-err-XXXXXX.log)
+    local log=$(mktemp -p . rsync-out-log-XXXXXX)
+    local errlog=$(mktemp -p . rsync-err-log-XXXXXX)
     local sleep rr rvbash rvzsh
 
     local -a verboseopts
