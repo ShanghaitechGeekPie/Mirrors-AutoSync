@@ -7,6 +7,10 @@ def get_info(Name, ConfigPath):
 	config_file = open(ConfigPath, 'r')
 	content = json.loads(config_file.read())
 	schedules = [i for i in content['schedules'] if (i['name'] == Name)]
+	if len(schedules) > 0:
+		schedules = schedules[0]
+	else:
+		schedules = None
 	if schedules:
 		ret = {
 			'schedule': schedules['schedule']
