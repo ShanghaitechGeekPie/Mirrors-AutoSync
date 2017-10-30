@@ -48,20 +48,21 @@ class task(object):
 		global scheduler
 		global mutex
 
-		if mutex.acquire():  
+		if mutex.acquire():
 			method_lock += 1
-			mutex.release()  
+			mutex.release()
 
 		try:
 
 			print("	[{}] running with [{}].".format(self.name, self.exec))
 
-			statuscode = os.system("python3 {} {} {} {} > {}{}"
+			statuscode = os.system("python3 {} {} {} {} {} > {}{}"
 				.format(
 					script_file_dir + self.exec,
 					self.name,
-					' '.join(self.argument),
+					config_file_dir,
 					status_file_dir,
+					' '.join(self.argument),
 					log_file_dir,
 					self.name)) >> 8
 
@@ -78,9 +79,9 @@ class task(object):
 						next_run_time = datetime.datetime.now() + datetime.timedelta(seconds = 60*60),)
 		finally:
 
-			if mutex.acquire():  
+			if mutex.acquire():
 				method_lock -= 1
-				mutex.release()  
+				mutex.release()
 
 	def setup(self, scheduler):
 		scheduler.add_job(
