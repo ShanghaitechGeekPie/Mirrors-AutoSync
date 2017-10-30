@@ -18,14 +18,12 @@ def get_info(Name, ConfigPath):
 				else [],
 			'upstream': schedules['upstream']
 				if ('upstream' in schedules)
-				else (schedules['upstream']
-					if ('upstream' in schedules)
-					else (schedules['schedule']['argument'][0]
-						if (
-							('schedule' in schedules) and
-							('argument' in schedules['schedule']) and
-							(len(schedules['schedule']['argument']) > 0))
-						else None)),
+				else (schedules['schedule']['argument'][0]
+					if (
+						('schedule' in schedules) and
+						('argument' in schedules['schedule']) and
+						(len(schedules['schedule']['argument']) > 0))
+					else None),
 		}
 		return ret;
 	else:
