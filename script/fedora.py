@@ -1,5 +1,5 @@
 # This script does not follow the general command line argument convention.
-
+exit(0) # and is temporarily disabled, before someone can fix it.
 import sys
 import os
 
