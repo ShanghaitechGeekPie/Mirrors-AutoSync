@@ -6,3 +6,5 @@ COPY Mirrors-AutoSync.conf Mirrors-AutoSync.py bandersnatch.conf /Mirrors-AutoSy
 COPY script /Mirrors-AutoSync/script
 COPY quick-fedora-mirror.conf /Mirrors-AutoSync/script/
 RUN find /Mirrors-AutoSync/script/ -regex '[^\.]*[^/]' | xargs chmod +x
+
+CMD python3 /Mirrors-AutoSync/Mirrors-AutoSync.py
