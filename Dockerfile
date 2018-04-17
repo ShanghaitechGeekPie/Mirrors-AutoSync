@@ -1,4 +1,4 @@
-FROM ccr.ccs.tencentyun.com/geekpie/mirrorsimage
+FROM registry.geekpie.club/geekpie/mirrorsimage
 
 MAINTAINER zxt @ Geek Pie Association
 RUN mkdir /Mirrors-AutoSync
