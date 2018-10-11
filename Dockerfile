@@ -1,4 +1,4 @@
-FROM registry.geekpie.club/geekpie/mirrorsimage
+FROM alpine:latest
 
 MAINTAINER zxt @ Geek Pie Association
 
