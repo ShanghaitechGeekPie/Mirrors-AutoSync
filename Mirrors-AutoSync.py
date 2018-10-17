@@ -56,7 +56,7 @@ class task(object):
 
 			print("	[{}] running with [{}].".format(self.name, self.exec))
 
-			statuscode = os.system("python3 {} {} {} {} {} > {}{}"
+			statuscode = os.system("( python3 {} {} {} {} {} 2>&1 ) > {}{}"
 				.format(
 					script_file_dir + self.exec,
 					self.name,
