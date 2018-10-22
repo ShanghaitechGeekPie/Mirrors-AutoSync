@@ -9,7 +9,7 @@ StatusPath	=	sys.argv[3]
 RemotePath	=	sys.argv[4]
 LocalPath	=	sys.argv[5]
 
-command = "/Mirrors-AutoSync/script/github-release-pull.sh -u {} -d {}".format(RemotePath, LocalPath)
+command = "/Mirrors-AutoSync/script/github-releases-pull.sh -u {} -d {}".format(RemotePath, LocalPath)
 
 print("	[{}] run command {}.".format(Name, command))
 
