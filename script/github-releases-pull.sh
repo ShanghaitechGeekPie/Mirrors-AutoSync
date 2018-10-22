@@ -1,5 +1,5 @@
-#!/bin/bash
-# Bash script to sync releases of a particular GitHub repository.
+#!/bin/sh
+# Shell script to sync releases of a particular GitHub repository.
 # WILL NOT DOWNLOAD SOURCE TAR BALLS
 # WILL NOT PRUNE ALREADY DOWNLOADED RELEASES WHICH LATER GET DELETED IN REPO
 #
