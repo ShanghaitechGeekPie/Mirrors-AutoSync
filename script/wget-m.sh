@@ -46,7 +46,7 @@ prepare() {
 }
 
 do_fetch() {
-    wget -m "$UPSTREAM" -R "$EXCLUDE" -e "robots=off" -np -nH -P $TARGET
+    wget -m "$UPSTREAM" -R "$EXCLUDE" -e "robots=off" -np -nH -E -P $TARGET
 }
 
 post_remove() {
