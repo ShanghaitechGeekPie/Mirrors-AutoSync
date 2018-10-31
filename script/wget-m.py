@@ -1,4 +1,3 @@
-exit(0) # Disabled
 import sys
 import os
 
