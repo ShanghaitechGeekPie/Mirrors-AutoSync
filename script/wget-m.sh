@@ -50,9 +50,10 @@ do_fetch() {
 }
 
 post_remove() {
+    
     for pattern in ${REMOVE//,/ }
     do
-        find . -name "$pattern" -type f | xargs -n1 -r -t rm
+        find $TARGET -name "$pattern" -type f | xargs -n1 -r -t rm
     done
 }
 
