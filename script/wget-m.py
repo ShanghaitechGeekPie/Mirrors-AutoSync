@@ -9,7 +9,7 @@ StatusPath	=	sys.argv[3]
 RemotePath	=	sys.argv[4]
 LocalPath	=	sys.argv[5]
 
-command = '/Mirrors-AutoSync/script/wget-m.sh -u {} -d {} -R "html,css,jpg,jpeg,png,js" -x "*.1,*.html"'.format(RemotePath, LocalPath)
+command = '/Mirrors-AutoSync/script/wget-m.sh -u {} -d {} -R "html,css,jpg,jpeg,png,js" -x "*.1,*.html,*.tmp"'.format(RemotePath, LocalPath)
 
 print("	[{}] run command {}.".format(Name, command))
 
