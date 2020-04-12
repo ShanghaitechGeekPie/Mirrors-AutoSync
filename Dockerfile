@@ -2,7 +2,7 @@ FROM alpine:latest
 
 MAINTAINER zxt @ Geek Pie Association
 
-RUN apk update && apk add --no-cache gcc git python3-dev musl-dev linux-headers  libc-dev  rsync zsh findutils wget util-linux grep 
+RUN apk update && apk add --no-cache gcc git python3-dev musl-dev linux-headers  libc-dev  rsync zsh findutils wget util-linux grep libxml2-dev libxslt-dev
 
 RUN pip3 install --upgrade pip  
 RUN pip3 install apscheduler bandersnatch
