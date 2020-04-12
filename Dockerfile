@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.9.5
 
 MAINTAINER zxt @ Geek Pie Association
 
