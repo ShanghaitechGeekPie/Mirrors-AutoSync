@@ -2,7 +2,10 @@ FROM alpine:latest
 
 MAINTAINER zxt @ Geek Pie Association
 
-RUN apk update && apk add --no-cache gcc git python3-dev musl-dev linux-headers  libc-dev  rsync zsh findutils wget util-linux grep && pip3 install --upgrade pip3  &&pip3 install apscheduler bandersnatch
+RUN apk update && apk add --no-cache gcc git python3-dev musl-dev linux-headers  libc-dev  rsync zsh findutils wget util-linux grep 
+
+RUN pip3 install --upgrade pip  
+RUN pip3 install apscheduler bandersnatch
 
 RUN mkdir /Mirrors-AutoSync
 
