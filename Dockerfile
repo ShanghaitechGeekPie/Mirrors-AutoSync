@@ -17,4 +17,6 @@ COPY quick-fedora-mirror.conf /Mirrors-AutoSync/script/
 RUN find /Mirrors-AutoSync/script/ -regex '[^\.]*[^/]' | xargs chmod +x
 RUN find /Mirrors-AutoSync/script/ -regex '[^\.]*\.sh' | xargs chmod +x
 
+RUN mkdir /mirrors/logs -p
+
 CMD python3 /Mirrors-AutoSync/Mirrors-AutoSync.py
