@@ -96,6 +96,8 @@ do_fetch() {
 			fetch_page_content $tempfile $UPSTREAM
 		done
 	done
+	
+	rm wget-log.*
 }
 
 parse_arg() {
